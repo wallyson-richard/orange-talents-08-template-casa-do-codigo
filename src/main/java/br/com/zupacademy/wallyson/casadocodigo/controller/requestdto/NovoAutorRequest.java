@@ -1,7 +1,8 @@
 package br.com.zupacademy.wallyson.casadocodigo.controller.requestdto;
 
 import br.com.zupacademy.wallyson.casadocodigo.modelo.Autor;
-import br.com.zupacademy.wallyson.casadocodigo.validation.EmailUnico;
+import br.com.zupacademy.wallyson.casadocodigo.modelo.enums.RegistroUnico;
+import br.com.zupacademy.wallyson.casadocodigo.validation.annotations.Unico;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -11,7 +12,7 @@ public class NovoAutorRequest {
 
     @NotBlank
     @Email
-    @EmailUnico
+    @Unico(RegistroUnico.AUTOR)
     private String email;
 
     @NotBlank

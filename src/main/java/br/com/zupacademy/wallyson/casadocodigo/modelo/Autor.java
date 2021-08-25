@@ -1,6 +1,7 @@
 package br.com.zupacademy.wallyson.casadocodigo.modelo;
 
-import br.com.zupacademy.wallyson.casadocodigo.validation.EmailUnico;
+import br.com.zupacademy.wallyson.casadocodigo.modelo.enums.RegistroUnico;
+import br.com.zupacademy.wallyson.casadocodigo.validation.annotations.Unico;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -23,7 +24,7 @@ public class Autor {
     public Autor() {
     }
 
-    public Autor(@NotBlank @Email @EmailUnico String email, @NotBlank String nome, @NotBlank
+    public Autor(@NotBlank @Email @Unico(RegistroUnico.AUTOR) String email, @NotBlank String nome, @NotBlank
     @Size(max = 400) String descricao) {
         this.email = email;
         this.nome = nome;

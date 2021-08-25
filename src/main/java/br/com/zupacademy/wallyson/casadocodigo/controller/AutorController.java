@@ -22,9 +22,8 @@ public class AutorController {
     }
 
     @PostMapping
-    public ResponseEntity<?> salvar(@RequestBody @Valid NovoAutorRequest form) {
-        Autor autor = form.converter();
-        autorRepository.save(autor);
+    public ResponseEntity<?> salvar(@RequestBody @Valid NovoAutorRequest novoAutor) {
+        autorRepository.save(novoAutor.converter());
         return ResponseEntity.ok().build();
     }
 }
