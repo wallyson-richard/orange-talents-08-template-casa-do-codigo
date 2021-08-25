@@ -1,15 +1,17 @@
-package br.com.zupacademy.wallyson.casadocodigo.controller.form;
+package br.com.zupacademy.wallyson.casadocodigo.controller.requestdto;
 
 import br.com.zupacademy.wallyson.casadocodigo.modelo.Autor;
+import br.com.zupacademy.wallyson.casadocodigo.validation.EmailUnico;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-public class AutorForm {
+public class NovoAutorRequest {
 
     @NotBlank
     @Email
+    @EmailUnico
     private String email;
 
     @NotBlank
