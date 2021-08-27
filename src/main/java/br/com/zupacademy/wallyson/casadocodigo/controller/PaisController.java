@@ -22,8 +22,8 @@ public class PaisController {
     }
 
     @PostMapping
-    public ResponseEntity<Pais> save(@RequestBody @Valid NovoPaisRequest request) {
-        paisRepository.save(request.toModel());
+    public ResponseEntity<Pais> save(@RequestBody @Valid NovoPaisRequest novoPais) {
+        paisRepository.save(novoPais.toModel());
         return ResponseEntity.ok().build();
     }
 }
