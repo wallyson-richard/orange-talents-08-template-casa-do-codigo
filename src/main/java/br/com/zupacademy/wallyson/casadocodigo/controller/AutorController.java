@@ -1,7 +1,6 @@
 package br.com.zupacademy.wallyson.casadocodigo.controller;
 
 import br.com.zupacademy.wallyson.casadocodigo.controller.requestdto.NovoAutorRequest;
-import br.com.zupacademy.wallyson.casadocodigo.modelo.Autor;
 import br.com.zupacademy.wallyson.casadocodigo.repository.AutorRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,7 +22,7 @@ public class AutorController {
 
     @PostMapping
     public ResponseEntity<?> salvar(@RequestBody @Valid NovoAutorRequest novoAutor) {
-        autorRepository.save(novoAutor.converter());
+        autorRepository.save(novoAutor.toModel());
         return ResponseEntity.ok().build();
     }
 }

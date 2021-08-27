@@ -14,9 +14,9 @@ public class ApplicationExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<?> methodArgumentNotValidException(MethodArgumentNotValidException ex) {
-        List<ExceptionHandlerResponse> erros = new ArrayList<>();
+        List<ExceptionHandlerDto> erros = new ArrayList<>();
         for (FieldError field : ex.getFieldErrors()) {
-            erros.add(new ExceptionHandlerResponse(field.getField(), field.getDefaultMessage()));
+            erros.add(new ExceptionHandlerDto(field.getField(), field.getDefaultMessage()));
         }
         return ResponseEntity.badRequest().body(erros);
     }

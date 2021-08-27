@@ -22,7 +22,7 @@ public class CategoriaController {
 
     @PostMapping
     public ResponseEntity<?> salvar(@RequestBody @Valid NovaCategoriaRequest novaCategoria) {
-        categoriaRepository.save(novaCategoria.converter());
+        categoriaRepository.save(novaCategoria.toModel());
         return ResponseEntity.ok().build();
     }
 }
