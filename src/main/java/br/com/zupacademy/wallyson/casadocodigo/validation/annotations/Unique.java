@@ -1,7 +1,7 @@
 package br.com.zupacademy.wallyson.casadocodigo.validation.annotations;
 
 import br.com.zupacademy.wallyson.casadocodigo.modelo.enums.RegistroUnico;
-import br.com.zupacademy.wallyson.casadocodigo.validation.validators.UnicoValidator;
+import br.com.zupacademy.wallyson.casadocodigo.validation.validators.UniqueValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -13,8 +13,8 @@ import static java.lang.annotation.ElementType.*;
 
 @Target({FIELD, METHOD, PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = {UnicoValidator.class})
-public @interface Unico {
+@Constraint(validatedBy = {UniqueValidator.class})
+public @interface Unique {
     String message() default "O dado informado não é válido, pois já se encontra na nossa base de dados.";
 
     Class<?>[] groups() default {};

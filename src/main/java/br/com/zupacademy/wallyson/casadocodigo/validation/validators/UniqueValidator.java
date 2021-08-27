@@ -1,6 +1,6 @@
 package br.com.zupacademy.wallyson.casadocodigo.validation.validators;
 
-import br.com.zupacademy.wallyson.casadocodigo.validation.annotations.Unico;
+import br.com.zupacademy.wallyson.casadocodigo.validation.annotations.Unique;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -9,7 +9,7 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.util.List;
 
-public class UnicoValidator implements ConstraintValidator<Unico, String> {
+public class UniqueValidator implements ConstraintValidator<Unique, String> {
 
     @PersistenceContext
     EntityManager entityManager;
@@ -18,7 +18,7 @@ public class UnicoValidator implements ConstraintValidator<Unico, String> {
     private String atributo;
 
     @Override
-    public void initialize(Unico constraintAnnotation) {
+    public void initialize(Unique constraintAnnotation) {
         classe = constraintAnnotation.value().getClasse().getSimpleName();
         atributo = constraintAnnotation.value().getAtributo();
     }
