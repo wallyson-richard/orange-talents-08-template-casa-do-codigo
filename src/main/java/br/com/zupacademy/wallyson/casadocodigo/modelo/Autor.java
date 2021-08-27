@@ -25,14 +25,22 @@ public class Autor {
     public Autor() {
     }
 
-    public Long getId() {
-        return id;
-    }
-
     public Autor(@NotBlank @Email @Unique(RegistroUnico.AUTOR_EMAIL) String email, @NotBlank String nome, @NotBlank
     @Size(max = 400) String descricao) {
         this.email = email;
         this.nome = nome;
         this.descricao = descricao;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getDescricao() {
+        return descricao;
     }
 }

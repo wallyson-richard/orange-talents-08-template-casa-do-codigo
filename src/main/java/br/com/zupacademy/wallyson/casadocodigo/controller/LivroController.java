@@ -1,13 +1,16 @@
 package br.com.zupacademy.wallyson.casadocodigo.controller;
 
 import br.com.zupacademy.wallyson.casadocodigo.controller.requestdto.NovoLivroRequest;
+import br.com.zupacademy.wallyson.casadocodigo.controller.responsedto.DetalheLivroResponse;
 import br.com.zupacademy.wallyson.casadocodigo.controller.responsedto.TodosLivrosResponse;
+import br.com.zupacademy.wallyson.casadocodigo.modelo.Livro;
 import br.com.zupacademy.wallyson.casadocodigo.repository.LivroRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -30,5 +33,13 @@ public class LivroController {
     public ResponseEntity<List<TodosLivrosResponse>> findAll() {
         List<TodosLivrosResponse> livros = livroRepository.findAll().stream().map(TodosLivrosResponse::new).collect(Collectors.toList());
         return ResponseEntity.ok(livros);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> findById(@PathVariable Long id) {
+        return livroRepository.findById(id)
+                .map(DetalheLivroResponse::new)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 }
