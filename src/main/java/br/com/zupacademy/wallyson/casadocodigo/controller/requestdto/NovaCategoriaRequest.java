@@ -16,11 +16,7 @@ public class NovaCategoriaRequest {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public Categoria toModel() {
-        return new Categoria(this.getNome());
+        return new Categoria(nome);
     }
 }
