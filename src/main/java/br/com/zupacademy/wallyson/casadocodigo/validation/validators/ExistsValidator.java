@@ -16,14 +16,17 @@ public class ExistsValidator implements ConstraintValidator<Exists, Object> {
     @PersistenceContext
     EntityManager entityManager;
 
+    private boolean optional;
+
     @Override
     public void initialize(Exists constraintAnnotation) {
+        optional = constraintAnnotation.optional();
     }
 
     @Override
     public boolean isValid(Object value, ConstraintValidatorContext context) {
         if (ObjectUtils.isEmpty(value)) {
-            return false;
+            return optional;
         }
 
         try {
@@ -31,6 +34,9 @@ public class ExistsValidator implements ConstraintValidator<Exists, Object> {
             Field field = classe.getDeclaredField("id");
             field.setAccessible(true);
             Object id = field.get(value);
+            if (optional && id == null) {
+                return true;
+            }
             Query query = entityManager.createQuery("select a from " + classe.getSimpleName() + " a where a." + field.getName() + " = :id");
             query.setParameter("id", id);
             List<?> resultList = query.getResultList();
