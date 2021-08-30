@@ -1,16 +1,15 @@
 package br.com.zupacademy.wallyson.casadocodigo.modelo.enums;
 
-import br.com.zupacademy.wallyson.casadocodigo.modelo.Autor;
-import br.com.zupacademy.wallyson.casadocodigo.modelo.Categoria;
-import br.com.zupacademy.wallyson.casadocodigo.modelo.Livro;
-import br.com.zupacademy.wallyson.casadocodigo.modelo.Pais;
+import br.com.zupacademy.wallyson.casadocodigo.modelo.*;
 
 public enum RegistroUnico {
     AUTOR_EMAIL(Autor.class, "email"),
     CATEGORIA_NOME(Categoria.class, "nome"),
     LIVRO_TITULO(Livro .class, "titulo"),
     LIVRO_ISBN(Livro.class, "isbn"),
-    PAIS_NOME(Pais.class, "nome");
+    PAIS_NOME(Pais.class, "nome"),
+    CLIENTE_EMAIL(Cliente.class, "email"),
+    CLIENTE_DOCUMENTO(Cliente.class, "documento");
 
     private final Class<?> classe;
     private final String atributo;
