@@ -34,15 +34,15 @@ public class Estado {
         return pais;
     }
 
-    public static boolean estadoPertenceAoPais(List<Estado> estados, Estado estado) {
-        boolean pertenceAoPaisInformado = false;
+    public static boolean listaContemOEstado(List<Estado> estados, Estado estado) {
+        boolean estadoExisteNaListaDeEstados = false;
         for (Estado x : estados) {
             if (x.equals(estado)) {
-                pertenceAoPaisInformado = true;
+                estadoExisteNaListaDeEstados = true;
                 break;
             }
         }
-        return pertenceAoPaisInformado;
+        return estadoExisteNaListaDeEstados;
     }
 
     @Override

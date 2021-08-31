@@ -17,7 +17,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class NovoClienteRequest {
 
@@ -105,7 +104,7 @@ public class NovoClienteRequest {
 
     public Cliente toModel(EstadoRepository estadoRepository) {
         List<Estado> estados = estadoRepository.findByPais(pais);
-        boolean estadoPertenceAoPais = Estado.estadoPertenceAoPais(estados, estado);
+        boolean estadoPertenceAoPais = Estado.listaContemOEstado(estados, estado);
 
         if (ObjectUtils.isEmpty(estado) && !estados.isEmpty()) {
             throw new ArgumentsNotValidException(List.of(new FieldError("estado",
