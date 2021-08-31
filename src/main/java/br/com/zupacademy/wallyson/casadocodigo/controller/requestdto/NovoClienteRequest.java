@@ -17,6 +17,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class NovoClienteRequest {
 
@@ -103,14 +104,21 @@ public class NovoClienteRequest {
     }
 
     public Cliente toModel(EstadoRepository estadoRepository) {
-        if (ObjectUtils.isEmpty(estado)) {
-            List<Estado> estados = estadoRepository.findByPais(pais);
-            if (!estados.isEmpty()) {
-                throw new ArgumentsNotValidException(List.of(new FieldError("estado",
-                        "estado",
-                        "Para esse páis é necessário informar um estado")));
-            }
+        List<Estado> estados = estadoRepository.findByPais(pais);
+        boolean estadoPertenceAoPais = Estado.estadoPertenceAoPais(estados, estado);
+
+        if (ObjectUtils.isEmpty(estado) && !estados.isEmpty()) {
+            throw new ArgumentsNotValidException(List.of(new FieldError("estado",
+                    "estado",
+                    "Para esse país é necessário informar um estado")));
         }
+
+        if (!estadoPertenceAoPais) {
+            throw new ArgumentsNotValidException(List.of(new FieldError("estado",
+                    "estado",
+                    "Estado não pertence ao país informado.")));
+        }
+
         Endereco endereco1 = new Endereco(logradouro, complemento, cep, cidade, estado, pais);
         return new Cliente(email, nome, sobrenome, documento, endereco1);
     }

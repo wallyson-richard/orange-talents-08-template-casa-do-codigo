@@ -1,6 +1,9 @@
 package br.com.zupacademy.wallyson.casadocodigo.modelo;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @Entity
 public class Estado {
@@ -29,5 +32,29 @@ public class Estado {
 
     public Pais getPais() {
         return pais;
+    }
+
+    public static boolean estadoPertenceAoPais(List<Estado> estados, Estado estado) {
+        boolean pertenceAoPaisInformado = false;
+        for (Estado x : estados) {
+            if (x.equals(estado)) {
+                pertenceAoPaisInformado = true;
+                break;
+            }
+        }
+        return pertenceAoPaisInformado;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Estado estado = (Estado) o;
+        return Objects.equals(id, estado.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
